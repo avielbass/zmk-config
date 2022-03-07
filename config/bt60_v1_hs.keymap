@@ -2,7 +2,26 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define QWERTY 0 //Normal QWERTY character layout
+#define NAVI   1 //Navigation keys, mouse, f-keys, delete
+#define MEDIA  2 //Multimedia controls
+#define WRK    3 //GBP, EUR, calculator, snip/print screen
+#define BT     4 //Bluetooth connectivity controls
+
 / {
+	combos {
+		compatible = "zmk,combos";
+
+		//This combo is for reaching the layer responsible for reaching the bluetooth control layer
+		combo_bt {
+			timeout-ms = <700>;
+			key-positions = <16 19 22 25>;
+			bindings = <&to BT>;
+		};
+
+
+	};
+
 	keymap {
 		compatible = "zmk,keymap";
 
@@ -15,21 +34,55 @@
 				// |  CTL  |  WIN  |  ALT  |            SPACE               | ALT | 1    |  MENU    |  CTRL    |
 				// ------------------------------------------------------------------------------------------
 			bindings = <
-				&kp ESC &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp  N8   &kp  N9 &kp  N0  &kp MINUS &kp EQUAL &kp BSPC &bt BT_CLR
-				&kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp  I    &kp  O  &kp  P   &kp LBKT &kp RBKT  &kp BSLH
-				&kp CLCK  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp  K    &kp  L  &kp SEMI &kp SQT           &kp RET
+				&kp ESC &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp  N8   &kp  N9 &kp  N0  &kp MINUS &kp EQUAL &kp BSPC &trans
+				&lt WORK TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp  I    &kp  O  &kp  P   &kp LBKT &kp RBKT  &kp BSLH
+				&lt NAVI CAPS  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp  K    &kp  L  &kp SEMI &kp SQT           &kp RET
 				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH             &kp RSHFT
-				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE                          &kp RALT  &mo 1 &kp K_CMENU &kp RCTRL
+				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE                          &kp RALT  &kp RCTRL &kp K_CMENU &tog MEDIA
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
-		raise {
+
+		navigation {
 			bindings = <
 				&kp GRAVE &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp  F8   &kp  F9 &kp  F10  &kp F11 &kp F12   &kp DEL &trans
-				&trans &trans &kp UP &trans &trans &trans &trans &trans &kp INS &trans &kp PSCRN &kp SLCK &kp PAUSE_BREAK &reset
-				&trans    &kp LEFT &kp DOWN &kp RIGHT &trans &trans &trans &trans &trans &trans &kp HOME  &kp PG_UP   &bootloader
-				&kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE &trans &trans &trans &trans &trans &kp END &kp PG_DN  &kp C_NEXT
-				&bt BT_PRV &bt BT_NXT  &trans              &trans                            &trans   &trans   &trans &bt BT_CLR
+				&kp TAB  &kp Q/*Tobe mouse Lclick*/ &kp W/*Tobe mouse up*/ &kp E/*Tobe mouse Rclick*/ &kp R/*Tobe ScrlUp*/ &kp T &kp Y &kp PG_UP &kp UP &kp PG_DN &kp P &kp LBKT &kp RBKT &kp BSLH
+				&trans    &kp A/*Tobe mouse left*/ &kp S/*Tobe mouse down*/ &kp D/*Tobe mouse right*/ &kp F/*Tobe ScrlDn*/ &kp G &kp HOME &kp LEFT &kp DOWN &kp RIGHT &kp END &kp SQT &kp RET
+				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH             &kp RSHFT
+				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE /*Should be mouse click*/  &kp RALT  &kp RGUI &kp K_CMENU &kp RCTRL
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+		};
+
+		multimedia {
+			bindings = <
+				&kp ESC &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 &kp  N8   &kp  N9 &kp  N0  &kp C_RW &kp C_FF &kp BSPC &trans
+				&kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp  I    &kp  O  &kp C_PLAY_PAUSE   &kp C_PREV &kp C_NEXT  &kp BSLH
+				&lt NAVI CAPS  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp  K    &kp  L  &kp SEMI &kp SQT           &kp RET
+				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &kp FSLH             &kp RSHFT
+				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE                          &kp RALT  &kp RGUI &kp K_CMENU &kp RCTRL
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+		};
+
+		work {
+			bindings = <
+				&kp ESC &kp N1 &kp N2 &kp N3 /*should be GBP*/ &kp N4 /*should be EUR*/ &kp N5 &kp N6 &kp N7 &kp  N8   &kp  N9 &kp  N0  &kp MINUS &kp EQUAL /*should be calculator*/ &kp BSPC &trans
+				&kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp  I    &kp  O  &kp  P /*should be print screen or snip tool*/   &kp LBKT &kp RBKT  &kp BSLH
+				&kp CLCK  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp  K    &kp  L  &kp SEMI &kp SQT           &kp RET
+				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH             &kp RSHFT
+				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE                          &kp RALT  &RGUI &kp K_CMENU &kp RCTRL
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+		};
+
+		bluetooth {
+			bindings = <
+				&to QWERTY &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &bt BT_CLR &trans
+				&to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY
+				&to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY
+				&to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY &to QWERTY
+				&to QWERTY &to QWERTY &to QWERTY              &to QWERTY                            &to QWERTY   &to QWERTY   &to QWERTY &to QWERTY
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
