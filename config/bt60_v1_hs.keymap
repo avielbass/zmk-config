@@ -15,7 +15,7 @@
 		//This combo is for reaching the layer responsible for reaching the bluetooth control layer
 		combo_bt {
 			timeout-ms = <700>;
-			key-positions = <16 19 22 25>;
+			key-positions = <17 20 23 26>;
 			bindings = <&to BT>;
 		};
 
@@ -46,10 +46,10 @@
 		navigation {
 			bindings = <
 				&kp GRAVE &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp  F8   &kp  F9 &kp  F10  &kp F11 &kp F12   &kp DEL &trans
-				&kp TAB  &kp Q/*Tobe mouse Lclick*/ &kp W/*Tobe mouse up*/ &kp E/*Tobe mouse Rclick*/ &kp R/*Tobe ScrlUp*/ &kp T &kp Y &kp PG_UP &kp UP &kp PG_DN &kp P &kp LBKT &kp RBKT &kp BSLH
-				&trans    &kp A/*Tobe mouse left*/ &kp S/*Tobe mouse down*/ &kp D/*Tobe mouse right*/ &kp F/*Tobe ScrlDn*/ &kp G &kp HOME &kp LEFT &kp DOWN &kp RIGHT &kp END &kp SQT &kp RET
+				&kp TAB  &kp Q &kp W &kp E &kp R &kp T &kp Y &kp PG_UP &kp UP &kp PG_DN &kp P &kp LBKT &kp RBKT &kp BSLH
+				&trans    &kp A &kp S &kp D &kp F &kp G &kp HOME &kp LEFT &kp DOWN &kp RIGHT &kp END &kp SQT &kp RET
 				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH             &kp RSHFT
-				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE /*Should be mouse click*/  &kp RALT  &kp RGUI &kp K_CMENU &kp RCTRL
+				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE   &kp RALT  &kp RGUI &kp K_CMENU &kp RCTRL
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
@@ -67,8 +67,8 @@
 
 		work {
 			bindings = <
-				&kp ESC &kp N1 &kp N2 &kp N3 /*should be GBP*/ &kp N4 /*should be EUR*/ &kp N5 &kp N6 &kp N7 &kp  N8   &kp  N9 &kp  N0  &kp MINUS &kp EQUAL /*should be calculator*/ &kp BSPC &trans
-				&kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp  I    &kp  O  &kp  P /*should be print screen or snip tool*/   &kp LBKT &kp RBKT  &kp BSLH
+				&kp ESC &kp N1 &kp N2 &kp N3 &kp N4  &kp N5 &kp N6 &kp N7 &kp  N8   &kp  N9 &kp  N0  &kp MINUS &kp EQUAL  &kp BSPC &trans
+				&kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp  I    &kp  O  &kp  P  &kp LBKT &kp RBKT  &kp BSLH
 				&kp CLCK  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp  K    &kp  L  &kp SEMI &kp SQT           &kp RET
 				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH             &kp RSHFT
 				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE                          &kp RALT  &RGUI &kp K_CMENU &kp RCTRL
