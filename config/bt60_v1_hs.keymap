@@ -5,8 +5,17 @@
 #define QWERT  0
 #define NAVI   1
 #define MEDIA  2
+#define BT     3
 
 / {
+	combos {
+		compatible = "zmk,combos";
+		combo_esc {
+			timeout-ms = <1000>;
+			key-positions = <0 1>;
+			bindings = <&to BT>;
+		};
+	};
 	keymap {
 		compatible = "zmk,keymap";
 
@@ -44,6 +53,16 @@
 				&lt NAVI CAPS  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp  K    &kp  L  &kp SEMI &kp SQT           &kp RET
 				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP &kp FSLH             &kp RSHFT
 				&kp LCTRL &kp LGUI &kp LALT            &kp SPACE                          &kp RALT  &kp RGUI &kp K_CMENU &kp RCTRL
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+		};
+		bluetooth {
+			bindings = <
+				&to QWERT &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &bt BT_CLR &trans
+				&to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT
+				&to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT
+				&to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT &to QWERT
+				&to QWERT &to QWERT &to QWERT              &to QWERT                            &to QWERT   &to QWERT   &to QWERT &to QWERT
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
